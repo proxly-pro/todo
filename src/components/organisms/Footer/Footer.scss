@@ -1,0 +1,9 @@
+@import '~@assets/styles/colors';
+
+.Root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: get-color('gray', 100);
+}

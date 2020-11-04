@@ -1,0 +1,33 @@
+@import '~@assets/styles/colors';
+
+.Root {
+  padding: 10px;
+  background-color: get-color('white', 100);
+  border-radius: 5px;
+}
+
+.Input, .Title {
+  font-size: 16px;
+}
+
+.EditButton, .RemoveButton {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+
+  i {
+    font-size: 12px;
+  }
+
+  &:not(:first-child) {
+    margin: 0 0 0 10px;
+  }
+}

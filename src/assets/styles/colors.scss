@@ -1,0 +1,39 @@
+$ds-palette: (
+  'gray': (
+    100: #F9FAFB,
+    200: #EDF0F3,
+    300: #E2E6EB,
+    400: #D0D6DE,
+    500: #B6BFCC,
+    600: #6B7481,
+    700: #313841,
+  ),
+  'white': (
+    100: #FFFFFF,
+  ),
+  'black': (
+    100: #1A222C,
+  ),
+);
+
+$ds-opacity: (
+  'light': 0.8,
+  'dark': 0.4,
+);
+
+@function get-color($name, $variant: 100, $opacity: 1) {
+  $color: null;
+  $color-spectrum: map-get($ds-palette, $name);
+
+  @if $color-spectrum {
+    $color: map-get($color-spectrum, $variant);
+  }
+
+  $alpha: if(type-of($opacity) == 'number', $opacity, map-get($ds-opacity, $opacity));
+
+  @if $alpha {
+    $color: rgba($color, $alpha);
+  }
+
+  @return $color;
+}

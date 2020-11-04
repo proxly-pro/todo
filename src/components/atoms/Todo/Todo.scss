@@ -1,0 +1,46 @@
+@import '~@assets/styles/colors.scss';
+@import '~@assets/styles/breakpoints.scss';
+
+.Root {
+  flex: 1;
+  margin: -8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.List {
+  margin: 8px;
+  width: calc(100% / 1 - 16px);
+
+  @include breakpoints(tablet) {
+    width: calc(100% / 2 - 16px);
+  }
+
+  @include breakpoints(laptop) {
+    width: calc(100% / 3 - 16px);
+  }
+
+  @include breakpoints(desktop) {
+    width: calc(100% / 4 - 16px);
+  }
+}
+
+.Button {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  i {
+    font-size: 16px;
+  }
+}
