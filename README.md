@@ -6,4 +6,4 @@
 
 ## Run
 
-`yarn run dev` or `npm run dev`
+`npm run dev` or `yarn run dev`
