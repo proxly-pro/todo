@@ -85,10 +85,6 @@ const Todo: React.FC<TodoProps> = ({ className, lists }) => {
     }
   };
 
-  React.useEffect(() => {
-    handleCreateList();
-  }, []);
-
   return (
     <div className={classNames(styles.Root, className)}>
       <DragDropContext onDragEnd={onDragEnd}>
