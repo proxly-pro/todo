@@ -18,14 +18,14 @@ import styles from './Item.scss';
 
 export interface TodoItemProps {
   className?: string;
-  parentId: string,
+  listId: string,
   id: string;
   title: string;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({
   className,
-  parentId,
+  listId,
   id,
   title: titleProp,
 }) => {
@@ -49,7 +49,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   };
 
   const handleRemoveItem = () => {
-    dispatch(TodoActions.removeItem(parentId, id));
+    dispatch(TodoActions.removeItemAsync(listId, id));
   };
 
   const actions = (

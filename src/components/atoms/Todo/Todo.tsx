@@ -3,7 +3,6 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { Button } from 'antd';
 import { useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
 import { DragDropContext, Droppable, OnDragEndResponder } from 'react-beautiful-dnd';
 
 // Components
@@ -34,13 +33,9 @@ export interface TodoProps {
 const Todo: React.FC<TodoProps> = ({ className, lists }) => {
   const dispatch = useDispatch();
 
-  const handleCreateList = () => (
-    dispatch(TodoActions.createList({
-      id: uuid(),
-      title: 'Новая задача',
-      items: [],
-    }))
-  );
+  const handleCreateList = () => {
+    dispatch(TodoActions.createListAsync('Новый список'));
+  };
 
   const getList = (id: string) =>
     lists.find((list: TodoListProps) => list.id === id);
@@ -54,7 +49,7 @@ const Todo: React.FC<TodoProps> = ({ className, lists }) => {
       const list = reorder(
         getList(source.droppableId)!,
         source.index,
-        destination.index
+        destination.index,
       );
 
       dispatch(TodoActions.updateList(list));

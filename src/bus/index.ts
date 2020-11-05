@@ -7,11 +7,14 @@ import { all, call } from 'redux-saga/effects';
 // Reducers
 import { todo } from './todo/reducer';
 
-export const rootReducer = (history: History) =>
-  combineReducers({ todo, router: connectRouter(history) });
+// Watchers
+import { watchTodo } from './todo/watchers'
 
 export type State = any;
 
+export const rootReducer = (history: History) =>
+  combineReducers({ todo, router: connectRouter(history) });
+
 export function* rootSaga() {
-  yield all([]);
+  yield all([call(watchTodo)]);
 }

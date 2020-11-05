@@ -27,9 +27,19 @@ type removeList = {
   payload: string,
 };
 
+type createItemToList = {
+  type: typeof TodoTypes.CREATE_ITEM_TO_LIST,
+  payload: { listId: string, id: string },
+};
+
+type removeItemFromList = {
+  type: typeof TodoTypes.REMOVE_ITEM_FROM_LIST,
+  payload: { listId: string, id: string },
+};
+
 type createItem = {
   type: typeof TodoTypes.CREATE_ITEM,
-  payload: { parentId: string, item: Item },
+  payload: Item,
 };
 
 type updateItem = {
@@ -39,7 +49,12 @@ type updateItem = {
 
 type removeItem = {
   type: typeof TodoTypes.REMOVE_ITEM,
-  payload: { parentId: string, id: string },
+  payload: string,
+};
+
+type removeItems = {
+  type: typeof TodoTypes.REMOVE_ITEMS,
+  payload: string[],
 };
 
 type searchItem = {
@@ -51,12 +66,16 @@ export type Action =
   | createList
   | updateList
   | removeList
+  | createItemToList
+  | removeItemFromList
   | createItem
   | updateItem
   | removeItem
+  | removeItems
   | searchItem;
 
 export const TodoActions = {
+  // Sync
   createList: (list: List) => ({
     type: TodoTypes.CREATE_LIST,
     payload: list,
@@ -72,9 +91,19 @@ export const TodoActions = {
     payload: id,
   }),
 
-  createItem: (parentId: string, item: Item) => ({
+  createItemToList: (listId: string, id: string) => ({
+    type: TodoTypes.CREATE_ITEM_TO_LIST,
+    payload: { listId, id },
+  }),
+
+  removeItemFromList: (listId: string, id: string) => ({
+    type: TodoTypes.REMOVE_ITEM_FROM_LIST,
+    payload: { listId, id },
+  }),
+
+  createItem: (item: Item) => ({
     type: TodoTypes.CREATE_ITEM,
-    payload: { parentId, item },
+    payload: item,
   }),
 
   updateItem: (item: Item) => ({
@@ -82,13 +111,39 @@ export const TodoActions = {
     payload: item,
   }),
 
-  removeItem: (parentId: string, id: string) => ({
+  removeItem: (id: string) => ({
     type: TodoTypes.REMOVE_ITEM,
-    payload: { parentId, id },
+    payload: id,
+  }),
+
+  removeItems: (ids: string[]) => ({
+    type: TodoTypes.REMOVE_ITEMS,
+    payload: ids,
   }),
 
   searchItem: (value: string) => ({
     type: TodoTypes.SEARCH_ITEM,
     payload: value,
+  }),
+
+  // Async
+  createListAsync: (title: string) => ({
+    type: TodoTypes.CREATE_LIST_ASYNC,
+    payload: title,
+  }),
+
+  removeListAsync: (id: string) => ({
+    type: TodoTypes.REMOVE_LIST_ASYNC,
+    payload: id,
+  }),
+
+  createItemAsync: (listId: string, title: string) => ({
+    type: TodoTypes.CREATE_ITEM_ASYNC,
+    payload: { listId, title },
+  }),
+
+  removeItemAsync: (listId: string, id: string) => ({
+    type: TodoTypes.REMOVE_ITEM_ASYNC,
+    payload: { listId, id },
   }),
 };

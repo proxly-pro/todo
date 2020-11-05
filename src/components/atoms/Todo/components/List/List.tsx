@@ -3,7 +3,6 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { Menu, Button, Dropdown } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
 import { Draggable } from 'react-beautiful-dnd';
 
 // Components
@@ -59,7 +58,7 @@ const TodoList: React.FC<TodoListProps> = ({
   });
 
   const handleCreateItem = () => {
-    dispatch(TodoActions.createItem(id, { id: uuid(), title: 'Новый список' }));
+    dispatch(TodoActions.createItemAsync(id, 'Новый задача'));
   };
 
   const handleUpdateList = () => {
@@ -67,7 +66,7 @@ const TodoList: React.FC<TodoListProps> = ({
   };
 
   const handleRemoveList = () => {
-    dispatch(TodoActions.removeList(id));
+    dispatch(TodoActions.removeListAsync(id));
   };
 
   const handleSearchChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -141,7 +140,7 @@ const TodoList: React.FC<TodoListProps> = ({
                 style={{ ...provided.draggableProps.style }}
                 className={styles.Item}
               >
-                <Item parentId={id} id={item.id} title={item.title} />
+                <Item listId={id} id={item.id} title={item.title} />
               </div>
             )}
           </Draggable>
