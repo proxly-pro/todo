@@ -40,7 +40,7 @@ const TodoList: React.FC<TodoListProps> = ({
   const [search, setSearch] = React.useState('');
   const [isSearch, setIsSearch] = React.useState(false);
 
-  const items = useSelector((state) => getItemsByIds(state, itemsProp));
+  const items = useSelector((state) => getItemsByIds(state, itemsProp, search));
 
   const dispatch = useDispatch();
 
@@ -80,10 +80,6 @@ const TodoList: React.FC<TodoListProps> = ({
   const handleCloseSearch = () => {
     setIsSearch(false);
   };
-
-  React.useEffect(() => {
-    dispatch(TodoActions.searchItem(search));
-  }, [search]);
 
   const menu = (
     <Menu>

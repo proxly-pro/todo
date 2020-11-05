@@ -10,8 +10,7 @@ export const getLists = (state: State) =>
 export const getItemById = (state: State, id: string) =>
   state.todo.items.byId[id];
 
-export const getItemsByIds = (state: State, ids: string[]) => {
-  const search = state.todo.items.search;
+export const getItemsByIds = (state: State, ids: string[], search: string) => {
   const items = ids.map((id: string) => getItemById(state, id));
 
   return items.filter((item: Item) =>

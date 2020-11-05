@@ -57,11 +57,6 @@ type removeItems = {
   payload: string[],
 };
 
-type searchItem = {
-  type: typeof TodoTypes.SEARCH_ITEM,
-  payload: string,
-};
-
 export type Action =
   | createList
   | updateList
@@ -71,8 +66,7 @@ export type Action =
   | createItem
   | updateItem
   | removeItem
-  | removeItems
-  | searchItem;
+  | removeItems;
 
 export const TodoActions = {
   // Sync
@@ -119,11 +113,6 @@ export const TodoActions = {
   removeItems: (ids: string[]) => ({
     type: TodoTypes.REMOVE_ITEMS,
     payload: ids,
-  }),
-
-  searchItem: (value: string) => ({
-    type: TodoTypes.SEARCH_ITEM,
-    payload: value,
   }),
 
   // Async

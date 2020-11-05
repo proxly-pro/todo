@@ -25,7 +25,6 @@ const remove = (draft: ISLists | ISItems, id: string) => {
 type ISItems = {
   byId: { [id: string]: { id: string, title: string } },
   allIds: string[],
-  search: string,
 };
 
 const ISItems = { byId: {}, allIds: [], search: '' };
@@ -53,11 +52,6 @@ const items = (
     case TodoTypes.REMOVE_ITEMS: {
       const ids = action.payload;
       ids.forEach((id: string) => remove(draft, id));
-      break;
-    }
-
-    case TodoTypes.SEARCH_ITEM: {
-      draft.search = action.payload;
       break;
     }
   }
