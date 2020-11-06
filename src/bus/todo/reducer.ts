@@ -27,7 +27,7 @@ type ISItems = {
   allIds: string[],
 };
 
-const ISItems = { byId: {}, allIds: [], search: '' };
+const ISItems = { byId: {}, allIds: [] };
 
 const items = (
   state: ISItems = ISItems,
