@@ -5,12 +5,20 @@ import { v4 as uuid } from 'uuid';
 // Actions
 import { TodoActions } from './actions';
 
-export function* createList(action: any) {
-  const list = { id: uuid(), title: action.payload, items: [] }
+// Types
+import {
+  createListAsync,
+  removeListAsync,
+  createItemAsync,
+  removeItemAsync,
+} from './types';
+
+export function* createList(action: createListAsync) {
+  const list = { id: uuid(), title: action.payload, items: [] };
   yield put(TodoActions.createList(list));
 }
 
-export function* removeList(action: any) {
+export function* removeList(action: removeListAsync) {
   const id = action.payload;
   const itemIds = yield select((state) => state.todo.lists.byId[id].items);
 
@@ -18,17 +26,17 @@ export function* removeList(action: any) {
   yield put(TodoActions.removeList(id));
 }
 
-export function* createItem(action: any) {
+export function* createItem(action: createItemAsync) {
   const { listId, title } = action.payload;
   const item = { id: uuid(), title };
 
   yield put(TodoActions.createItem(item));
-  yield put(TodoActions.createItemToList(listId, item.id))
+  yield put(TodoActions.createItemToList(listId, item.id));
 }
 
-export function* removeItem(action: any) {
+export function* removeItem(action: removeItemAsync) {
   const { listId, id } = action.payload;
 
   yield put(TodoActions.removeItem(id));
-  yield put(TodoActions.removeItemFromList(listId, id))
+  yield put(TodoActions.removeItemFromList(listId, id));
 }

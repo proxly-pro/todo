@@ -3,10 +3,10 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 // Styles
-import styles from './Footer.scss';
+import styles from './Footer.module.scss';
 
 export interface FooterProps {
-  className: string;
+  className?: string;
 }
 
 const Footer: React.FC<FooterProps> = ({ className }) => (
@@ -15,4 +15,5 @@ const Footer: React.FC<FooterProps> = ({ className }) => (
   </footer>
 );
 
-export default React.memo(Footer);
+// Exports
+export default Footer;

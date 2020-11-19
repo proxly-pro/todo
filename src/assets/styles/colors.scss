@@ -1,4 +1,4 @@
-$ds-palette: (
+$todo-palette: (
   'gray': (
     100: #F9FAFB,
     200: #EDF0F3,
@@ -16,20 +16,20 @@ $ds-palette: (
   ),
 );
 
-$ds-opacity: (
+$todo-opacity: (
   'light': 0.8,
   'dark': 0.4,
 );
 
 @function get-color($name, $variant: 100, $opacity: 1) {
   $color: null;
-  $color-spectrum: map-get($ds-palette, $name);
+  $color-spectrum: map-get($todo-palette, $name);
 
   @if $color-spectrum {
     $color: map-get($color-spectrum, $variant);
   }
 
-  $alpha: if(type-of($opacity) == 'number', $opacity, map-get($ds-opacity, $opacity));
+  $alpha: if(type-of($opacity) == 'number', $opacity, map-get($todo-opacity, $opacity));
 
   @if $alpha {
     $color: rgba($color, $alpha);

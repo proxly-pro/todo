@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter as Router } from 'connected-react-router';
 
 // Components
-import App from '@components/atoms/App';
 import ErrorBoundary from '@components/atoms/ErrorBoundary';
+
+// Routes
+import App from '@routes/App';
 
 // Store
 import { store, history } from '@store/index';
@@ -18,9 +20,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundary>
       <Router history={history}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <App />
       </Router>
     </ErrorBoundary>
   </Provider>,

@@ -3,14 +3,15 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 // Styles
-import styles from './Header.scss';
+import styles from './Header.module.scss';
 
 export interface HeaderProps {
-  className: string;
+  className?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ className }) => (
   <header className={classNames(styles.Root, className)} />
 );
 
-export default React.memo(Header);
+// Exports
+export default Header;

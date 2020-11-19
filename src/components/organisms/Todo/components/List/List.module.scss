@@ -1,0 +1,61 @@
+@import './src/assets/styles/colors';
+
+.Root {
+  padding: 20px 10px;
+  background-color: get-color('gray', 300);
+  border-radius: 5px;
+}
+
+.Search {
+  margin: 0 0 20px 0;
+}
+
+.Control {
+  padding: 0 10px;
+  font-size: 24px;
+  margin: 0 0 20px 0;
+}
+
+.MenuButton, .CreateButton {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MenuButton {
+  width: 16px;
+  height: 16px;
+
+  i {
+    font-size: 12px;
+  }
+
+  &:not(:first-child) {
+    margin: 0 0 0 10px;
+  }
+}
+
+.Content {
+  padding: 1px 0 0 0;
+}
+
+.Item {
+  margin: 0 0 10px 0;
+}
+
+.CreateButton {
+  justify-content: flex-start;
+  padding: 0 10px;
+  height: 24px;
+
+  i {
+    font-size: 16px;
+    margin: 0 10px 0 0;
+  }
+}

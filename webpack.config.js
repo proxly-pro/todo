@@ -9,6 +9,8 @@ module.exports = () => ({
     filename: 'main.bundle.js',
   },
 
+  devtool: 'eval-cheap-module-source-map',
+
   module: {
     rules: [
       {
@@ -20,20 +22,14 @@ module.exports = () => ({
         test: /\.(css)$/,
         use: [
           { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: { modules: true },
-          },
+          { loader: 'css-loader', },
         ],
       },
       {
         test: /\.(s[ca]ss)$/,
         use: [
           { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: { modules: true },
-          },
+          { loader: 'css-loader' },
           { loader: 'sass-loader' },
         ],
       },
@@ -48,10 +44,16 @@ module.exports = () => ({
       '@bus': path.resolve(__dirname, './src/bus'),
       '@components': path.resolve(__dirname, './src/components'),
       '@helpers': path.resolve(__dirname, './src/helpers'),
-      '@navigation': path.resolve(__dirname, './src/navigation'),
+      '@routes': path.resolve(__dirname, './src/routes'),
       '@store': path.resolve(__dirname, './src/store'),
       '@utils': path.resolve(__dirname, './src/utils'),
     },
+  },
+
+  devServer: {
+    open: false,
+    historyApiFallback: true,
+    overlay: true,
   },
 
   plugins: [new HtmlWebpackPlugin({ template: 'public/index.html' })],

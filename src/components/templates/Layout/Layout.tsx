@@ -7,7 +7,7 @@ import Header from '@components/organisms/Header';
 import Footer from '@components/organisms/Footer';
 
 // Styles
-import styles from './Layout.scss';
+import styles from './Layout.module.scss';
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -16,13 +16,13 @@ export interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, className }) => (
   <div className={classNames(styles.Root, className)}>
-    <Header className={styles.Header} />
+    <Header />
 
     <main className={styles.Main}>
       <div className={styles.Wrapper}>{children}</div>
     </main>
 
-    <Footer className={styles.Footer} />
+    <Footer />
   </div>
 );
 

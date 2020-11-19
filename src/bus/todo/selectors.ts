@@ -1,18 +1,23 @@
-import { State } from '@bus/index';
-import { Item } from '@bus/todo/actions';
+// Core
+import { createSelector } from 'reselect';
 
-export const getListById = (state: State, id: string) =>
-  state.todo.lists.byId[id];
+import { RootState } from '@store/index';
+import { Item } from './types';
 
-export const getLists = (state: State) =>
-  state.todo.lists.allIds.map((id: string) => getListById(state, id));
+const getListAllIds = (state: RootState) => state.todo.lists.allIds;
+const getListById = (state: RootState) => state.todo.lists.byId;
 
-export const getItemById = (state: State, id: string) =>
-  state.todo.items.byId[id];
+export const getLists = createSelector(
+  [getListAllIds, getListById],
+  (allIds, byId) => allIds.map((id: string) => byId[id]),
+);
 
-export const getItemsByIds = (state: State, ids: string[], search: string) => {
-  const items = ids.map((id: string) => getItemById(state, id));
+const getItemById = (state: RootState) => state.todo.items.byId;
 
-  return items.filter((item: Item) =>
-    item.title.toLowerCase().indexOf(search.toLowerCase()) > -1);
-};
+export const makeGetItems = (ids: string[], term: string) =>
+  createSelector([getItemById], (byId) => {
+    const items = ids.map((id: string) => byId[id]);
+
+    return items.filter((item: Item) =>
+      item.title.toLowerCase().indexOf(term.toLowerCase()) > -1);
+  });

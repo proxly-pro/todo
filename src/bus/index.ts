@@ -8,9 +8,7 @@ import { all, call } from 'redux-saga/effects';
 import { todo } from './todo/reducer';
 
 // Watchers
-import { watchTodo } from './todo/watchers'
-
-export type State = any;
+import { watchTodo } from './todo/watchers';
 
 export const rootReducer = (history: History) =>
   combineReducers({ todo, router: connectRouter(history) });

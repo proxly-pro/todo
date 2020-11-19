@@ -1,72 +1,5 @@
 // Types
-import { TodoTypes } from './types';
-
-export type Item = {
-  id: string,
-  title: string,
-};
-
-export type List = {
-  id: string,
-  title: string,
-  items: string[],
-};
-
-type createList = {
-  type: typeof TodoTypes.CREATE_LIST,
-  payload: List,
-};
-
-type updateList = {
-  type: typeof TodoTypes.UPDATE_LIST,
-  payload: List,
-};
-
-type removeList = {
-  type: typeof TodoTypes.REMOVE_LIST,
-  payload: string,
-};
-
-type createItemToList = {
-  type: typeof TodoTypes.CREATE_ITEM_TO_LIST,
-  payload: { listId: string, id: string },
-};
-
-type removeItemFromList = {
-  type: typeof TodoTypes.REMOVE_ITEM_FROM_LIST,
-  payload: { listId: string, id: string },
-};
-
-type createItem = {
-  type: typeof TodoTypes.CREATE_ITEM,
-  payload: Item,
-};
-
-type updateItem = {
-  type: typeof TodoTypes.UPDATE_ITEM,
-  payload: Item,
-};
-
-type removeItem = {
-  type: typeof TodoTypes.REMOVE_ITEM,
-  payload: string,
-};
-
-type removeItems = {
-  type: typeof TodoTypes.REMOVE_ITEMS,
-  payload: string[],
-};
-
-export type Action =
-  | createList
-  | updateList
-  | removeList
-  | createItemToList
-  | removeItemFromList
-  | createItem
-  | updateItem
-  | removeItem
-  | removeItems;
+import { TodoTypes, List, Item } from './types';
 
 export const TodoActions = {
   // Sync
@@ -75,14 +8,29 @@ export const TodoActions = {
     payload: list,
   }),
 
-  updateList: (list: List) => ({
+  updateList: (id: string, title: string) => ({
     type: TodoTypes.UPDATE_LIST,
-    payload: list,
+    payload: { id, title },
   }),
 
   removeList: (id: string) => ({
     type: TodoTypes.REMOVE_LIST,
     payload: id,
+  }),
+
+  reorderItemInList: (id: string, startIndex: number, endIndex: number) => ({
+    type: TodoTypes.REORDER_ITEM_IN_LIST,
+    payload: { id, startIndex, endIndex },
+  }),
+
+  moveItemFromList: (
+    sourceId: string,
+    destinationId: string,
+    sourceIndex: number,
+    destinationIndex: number,
+  ) => ({
+    type: TodoTypes.MOVE_ITEM_FROM_LIST,
+    payload: { sourceId, destinationId, sourceIndex, destinationIndex },
   }),
 
   createItemToList: (listId: string, id: string) => ({
@@ -100,9 +48,9 @@ export const TodoActions = {
     payload: item,
   }),
 
-  updateItem: (item: Item) => ({
+  updateItem: (id: string, title: string) => ({
     type: TodoTypes.UPDATE_ITEM,
-    payload: item,
+    payload: { id, title },
   }),
 
   removeItem: (id: string) => ({

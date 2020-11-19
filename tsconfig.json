@@ -20,10 +20,10 @@
       "@bus/*": ["./src/bus/*"],
       "@components/*": ["./src/components/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@navigation/*": ["./src/navigation/*"],
+      "@routes/*": ["./src/routes/*"],
       "@store/*": ["./src/store/*"],
       "@utils/*": ["./src/utils/*"]
     }
   },
-  "include": ["src", "./global.d.ts"]
+  "include": ["src"]
 }

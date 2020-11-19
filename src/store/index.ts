@@ -29,7 +29,11 @@ const loggerMiddleware = createLoggerMiddleware({
   },
 });
 
-const middleware = [routerMiddleware(history), sagaMiddleware, loggerMiddleware];
+const middleware = [
+  routerMiddleware(history),
+  sagaMiddleware,
+  loggerMiddleware,
+];
 
 const persistedState: any = loadState();
 
@@ -39,8 +43,12 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware)),
 );
 
-store.subscribe(throttle(() => {
-  saveState({ todo: store.getState().todo });
-}, 1000));
+store.subscribe(
+  throttle(() => {
+    saveState({ todo: store.getState().todo });
+  }, 1000),
+);
 
 sagaMiddleware.run(rootSaga);
+
+export type RootState = ReturnType<typeof store.getState>
